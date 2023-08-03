@@ -47,7 +47,7 @@ module.exports = app =>{
         }
     }
 
-    const limit = 10
+    const limit = 5
     const get = async (req,res) => {
         const page = req.query.page || 1
         const result = await app.db('articles').count('id').first()

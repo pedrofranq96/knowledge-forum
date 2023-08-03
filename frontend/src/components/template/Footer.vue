@@ -15,7 +15,7 @@ export default {
         grid-area: footer;
         background-color: #DDD;
         color: #333;
-
+        border-radius: 5px;
         display: flex;
         align-items: center;
         justify-content: flex-end;
