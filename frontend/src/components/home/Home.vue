@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <PageTitle icon="fa fa-home" main="Dashboard"
-            sub="Base de Conhecimento"/>
+            sub="Workout - Base de Conhecimento"/>
         <div class="stats">
           <Stat title="Categorias" :value="stat.categories"
             icon="fa fa-folder" color="#d54d50"/>
