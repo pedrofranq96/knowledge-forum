@@ -26,6 +26,7 @@ module.exports = app =>{
             admin: user.admin,
             iat: now,
             exp: now + (60 * 60 * 24 * 3)
+            //exp: now + 10
         }
         res.json({
             ...payload,
@@ -46,5 +47,24 @@ module.exports = app =>{
         res.send(false)
     }
 
-    return { signin, validateToken}
+    const validateAdmin = async (req, res) => {
+        const userData = req.body || null
+        try {
+            const token = jwt.decode(userData.token, authSecret)
+            const user = await app.db('users')
+                .where({ email: token.email})
+                .whereNull('deletedAt')
+                .first()
+            if(user.admin && token.admin){
+                return res.send(true)
+            }
+            console.log('entrou aqui 1')
+        } catch(e) {
+            res.status(401).send('Você não tem permissão para acessar essa página!')
+        }
+        
+        return res.send(false)
+    }
+ 
+    return { signin, validateToken, validateAdmin }
 }
