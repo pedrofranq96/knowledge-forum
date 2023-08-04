@@ -9,19 +9,27 @@
         </div>
         <div class="user-dropdown-content">
             <router-link to="/admin"><i class="fa fa-cogs"></i> Admin </router-link>
-            <a href><i class="fa fa-sign-out"></i> Sair </a>
+            <a href @click.prevent="logout"><i class="fa fa-sign-out"></i> Sair </a>
         </div>
     </div>
 </template>
 
 <script>
+import { userKey } from '@/global'
 import { mapState } from 'vuex'
 import Gravatar from 'vue-gravatar'
 
 export default {
     name: 'User-Dropdown',
     components: { Gravatar },
-    computed: mapState(['user'])
+    computed: mapState(['user']),
+    methods: { 
+        logout(){
+            localStorage.removeItem(userKey)
+            this.$store.commit('setUser', null)
+            this.$router.push({ name: 'auth' })
+        }
+    }
 }
 </script>
 
@@ -29,7 +37,7 @@ export default {
     .user-dropdown {
         position: relative;
         height: 100%;
-
+        border-radius: 2px;
     }
 
     .user-button {
@@ -59,14 +67,14 @@ export default {
         position: absolute;
         right: 0px;
         background-color: #f9f9f9;
-        min-width: 195px;
+        min-width: 90px;
         box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
         padding: 10px;
         z-index: 1;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-
+        border-radius: 8px;
         visibility: hidden;
         opacity: 0;
         transition: visibility 0s, opacity 0.5 linear;
@@ -83,6 +91,7 @@ export default {
     .user-dropdown-content a:hover {
         text-decoration: none;
         color: #000;
-        background-color: #EDEDED;
+        background-color: #DEDEDE;
+        border-radius: 5px;
     }
 </style>

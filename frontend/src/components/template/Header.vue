@@ -40,8 +40,7 @@ export default {
         background: linear-gradient(to right, #000, #275865);
         display: flex;
         justify-content: center;
-        align-items: center;
-        
+        align-items: center;        
     }
     .title {
         font-size: 1.2rem;
