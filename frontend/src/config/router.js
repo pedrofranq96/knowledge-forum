@@ -43,7 +43,7 @@ router.beforeEach(async(to, from, next) => {
     if(to.matched.some(record => record.meta.requiresAdmin)){
         const user = JSON.parse(json)
         const admin = await axios.post(`${baseApiUrl}/validateAdmin`, user)
-        user && user.admin ? next() : next({path: '/' })
+        user && admin ? next() : next({path: '/' })
     } else {
         next()
     }

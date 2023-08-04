@@ -25,7 +25,7 @@ export default {
         axios.get(url).then(res => this.article = res.data)
     },
     updated(){
-        document.querySelectorAll('.article-content pre~.ql-syntax').forEach(e => {
+        document.querySelectorAll('.article-content pre.ql-syntax').forEach(e => {
             hljs.highlightBlock(e)
         })
     }  
